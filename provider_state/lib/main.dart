@@ -3,7 +3,9 @@ import 'package:provider_state/Provider/count_provider.dart';
 
 import 'package:provider/provider.dart';
 import 'package:provider_state/Provider/exampleOne_provider.dart';
+import 'package:provider_state/Provider/favourite_provider.dart';
 import 'package:provider_state/Screen/exampleOneScreen.dart';
+import 'package:provider_state/Screen/favourite_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
             create: (context) => CountProvider(),
           ),
           ChangeNotifierProvider(create: (_) => ExampleOne()),
+          ChangeNotifierProvider(create: (_) => FovouriteItemProvider()),
         ],
         child: MaterialApp(
           title: 'Provider State management',
@@ -28,7 +31,7 @@ class MyApp extends StatelessWidget {
             useMaterial3: true,
           ),
           debugShowCheckedModeBanner: false,
-          home: ExampleOneProvider(),
+          home: FavouriteScreen(),
         ));
   }
 }
