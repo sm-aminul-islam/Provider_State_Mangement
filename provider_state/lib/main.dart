@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider_state/Provider/count_provider.dart';
 
 import 'package:provider/provider.dart';
+import 'package:provider_state/Provider/darkTheme_provider.dart';
 import 'package:provider_state/Provider/exampleOne_provider.dart';
 import 'package:provider_state/Provider/favourite_provider.dart';
+import 'package:provider_state/Screen/dark_theme.dart';
 import 'package:provider_state/Screen/exampleOneScreen.dart';
 import 'package:provider_state/Screen/favourite_screen.dart';
 
@@ -23,15 +25,25 @@ class MyApp extends StatelessWidget {
           ),
           ChangeNotifierProvider(create: (_) => ExampleOne()),
           ChangeNotifierProvider(create: (_) => FovouriteItemProvider()),
+          ChangeNotifierProvider(create: (_) => DarkThemeProvider()),
         ],
-        child: MaterialApp(
-          title: 'Provider State management',
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-            useMaterial3: true,
-          ),
-          debugShowCheckedModeBanner: false,
-          home: FavouriteScreen(),
-        ));
+        child: Builder(builder: (BuildContext context) {
+          final themeChanger = Provider.of<DarkThemeProvider>(context);
+          return MaterialApp(
+            title: 'Provider State management',
+            themeMode: themeChanger.themeMode,
+            darkTheme: ThemeData(
+                brightness: Brightness.dark, primaryColor: Colors.orange),
+            theme: ThemeData(
+              brightness: Brightness.light,
+              primarySwatch: Colors.orange,
+              primaryColor: Colors.purple,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              useMaterial3: true,
+            ),
+            debugShowCheckedModeBanner: false,
+            home: DarkThemeScreen(),
+          );
+        }));
   }
 }
