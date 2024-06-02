@@ -8,6 +8,7 @@ import 'package:provider_state/Provider/favourite_provider.dart';
 import 'package:provider_state/Screen/dark_theme.dart';
 import 'package:provider_state/Screen/exampleOneScreen.dart';
 import 'package:provider_state/Screen/favourite_screen.dart';
+import 'package:provider_state/Screen/value_notify_listener.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
               useMaterial3: true,
             ),
             debugShowCheckedModeBanner: false,
-            home: DarkThemeScreen(),
+            home: NotifyListenerScreen(),
           );
         }));
   }
